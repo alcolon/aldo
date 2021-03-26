@@ -1,0 +1,36 @@
+<launch>
+
+  <!-- Turtlesim Node-->
+  <node pkg="turtlesim" type="turtlesim_node" name="sim"/>
+
+  <node pkg="turtlesim" type="turtle_teleop_key" name="follower" output="screen"/>
+
+  <node pkg="turtlesim" type="turtle_teleop_key" name="ugly_duckling" output="screen"/>
+  
+
+
+  <!-- Axes -->
+  <param name="scale_linear" value="2" type="double"/>
+  <param name="scale_angular" value="2" type="double"/>
+
+  <node name="turtle1_tf2_broadcaster" pkg="turtle_tf2" type="turtle_tf2_broadcaster.py" respawn="false" output="screen" >
+    <param name="turtle" type="string" value="turtle1" />
+  </node>
+  <node name="follower_node_broadcaster" pkg="turtle_tf2" type="turtle_tf2_broadcaster.py" respawn="false" output="screen" >
+    <param name="turtle" type="string" value="turtle2" />
+  </node>
+  <node name="ugly_duckling_listener" pkg="aldopkg" type="ugly_duckling_listener.py" respawn="false" output="screen" > 
+    <param name="turtle" type="string" value="turtle3" />
+  </node>
+  <node name="ugly_duckling_listener2" pkg="aldopkg" type="ugly_duckling_listener2.py" respawn="false" output="screen" > 
+    <param name="turtle" type="string" value="turtle3" />
+  </node>
+  <node name="turtle_pointer" pkg="turtle_tf2" type="turtle_tf2_listener.py" respawn="false" output="screen" >
+  </node>
+  <node name="duckling_pointer" pkg="aldopkg" type="ugly_duckling_listener.py" respawn="false" output="screen" >
+  </node>
+  <!-- <node pkg="learning_tf2" type="fixed_tf2_broadcaster.py" name="broadcaster_fixed" output="screen">
+  </node>
+  <node pkg="learning_tf2" type="dynamic_tf2_broadcaster.py" name="broadcaster_dynamic" output="screen">
+  </node> -->
+</launch>
